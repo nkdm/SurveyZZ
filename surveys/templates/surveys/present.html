@@ -1,0 +1,9 @@
+{{ question }}
+<form method="post" >
+{% csrf_token %}
+{% for answer in answers %}
+     <input type="radio" name="answer" value="{{answer.id}}">{{ answer.text }}<br>
+{% endfor %}
+<input type="submit" value="Submit">
+</form>
+

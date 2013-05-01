@@ -7,13 +7,13 @@ class Survey(models.Model):
     def __unicode__(self):
         return self.question
 
-class Vote(models.Model):
-    survey = models.ForeignKey(Survey)
-    choice_text = models.CharField(max_length=50)
-
 class PossibleAnswer(models.Model):
     survey = models.ForeignKey(Survey)
     text = models.CharField(max_length=150)
     def __unicode__(self):
         return self.text
 
+class Vote(models.Model):
+    choice = models.ForeignKey(PossibleAnswer)
+    def __unicode__(self):
+        return self.choice.survey.question + " : " + self.choice.text

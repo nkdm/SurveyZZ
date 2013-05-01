@@ -1,27 +1,37 @@
 {% load staticfiles %}
-
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <link rel="stylesheet" type="text/css" href="{% static 'surveys/style.css' %}" />
-  <title>{% block title %}My amazing site{% endblock %}</title>
+  <title>{% block title %}{% endblock %}</title>
 </head>
-
 <body>
-    <div id="sidebar">
-        {% block sidebar %}
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/surveys/">Surveys</a></li>
-        </ul>
-        {% endblock %}
-    </div>
 
-    <div id="content">
-        {% block content %}{% endblock %}
-    </div>
+<div id="container">
+
+  <div id="main-header">
+	<h1>
+	  Survey System<br>
+	  ZZ
+	</h1>
+  </div>
+
+  <div id="menu" >
+	<b>Menu</b><br>
+	<a href="/surveys/">Surveys</a><br>
+	<a href="/admin/">Admin</a><br>
+
+  </div>
+
+  <div id="content" >
+        {% block content %}{% endblock %} 
+  </div>
+
+  <div id="main-footer">
+	Copyright © Tomasz Pasternak
+  </div>
+
+</div>
+
 </body>
-</html>
-
+</html> 

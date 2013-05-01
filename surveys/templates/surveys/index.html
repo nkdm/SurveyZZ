@@ -3,8 +3,13 @@
 
 {% block content %}
 
+<table>
 {% for survey in surveys %}
-    <p><a href="/surveys/{{ survey.id }}">{{ survey.question }}</a></p>
+  <tr>
+    <td> {{ survey.question }} </td> 
+    <td> <a href="/surveys/{{ survey.id }}">Fill</a> </td>
+    <td> <a href="/surveys/{{ survey.id }}/results">Results</a>  </td>
+  </tr>
 {% endfor %}
-
+</table>
 {% endblock content %}

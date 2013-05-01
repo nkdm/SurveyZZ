@@ -1,5 +1,50 @@
-body{
+body
+{
+	margin: 0px;
+	height: 100%;
+	width: 100%;
 	background: #E8E8E8;
+	font-family: Arial, Helvetica, sans-serif ; 
+}
+
+#main-header
+{
+	padding: 1px 30px 2px 15px;
+}
+
+#main-header  h1
+{
+	font-size: 20px;
+}
+
+#main-footer
+{
+	clear:both;
+	text-align:center;
+	background-color: #0000CC;
+	color: #E0AF1B;
+	padding: 2px 0 2px 0;
+}
+
+#menu
+{
+	background-color: #0494C4;
+	height: 600px;
+	width: 15%;
+	float: left;
+	color: white;
+
+	padding: 15px 0 0 15px;
+}
+
+#menu, #menu a, #main-header, #main-footer
+{
+	color: #FFDC73;
+}
+
+#main-header, #main-footer
+{
+	background-color: #007AA3
 }
 
 table
@@ -7,9 +52,6 @@ table
 	border-collapse:collapse;
 	font-family: sans-serif;
 	text-align: center;
-}
-table,  td
-{
 	border: 1px solid white;
 }
 
@@ -18,17 +60,29 @@ td, th
 	padding: 0px 30px 0px 30px;
 }
 
+th
+{
+	background-color:#007AA3;
+	color: white;
+}
+
 tr
 {
 	background-color:#99CCFF;
 }
 
-th
-{
-	background-color:#0066FF;
-	color: white;
-}
 
 tr:nth-child(even) {
     background-color: #CCFFFF ;
 }
+
+#content
+{
+	background-color: #C8E0E8;
+	width:79%;
+	height:600px;
+	float:left;
+	padding: 15px 0 0 15px;
+}
+
+

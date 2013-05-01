@@ -1,0 +1,27 @@
+{% load staticfiles %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" type="text/css" href="{% static 'surveys/style.css' %}" />
+  <title>{% block title %}My amazing site{% endblock %}</title>
+</head>
+
+<body>
+    <div id="sidebar">
+        {% block sidebar %}
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/surveys/">Surveys</a></li>
+        </ul>
+        {% endblock %}
+    </div>
+
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
+

@@ -26,7 +26,8 @@ def presentSurvey(request,id):
         answer = PossibleAnswer.objects.get(id = optionId)
         vote = Vote.objects.create(choice = answer)
         vote.save()
-        return HttpResponse("Thank you for voting for: " + answer.text )
+        context = Context ({ "answer" : answer  })
+        return render(request, "surveys/thanks.html", context )
 
 from django.db.models import Count
 def results(request,id):
@@ -36,6 +37,3 @@ def results(request,id):
             "votes": votes
     })
     return render(request, "surveys/results.html", context)
-
-        
-

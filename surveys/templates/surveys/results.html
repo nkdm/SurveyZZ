@@ -1,4 +1,20 @@
-{% for vote in votes %}
-       <p>{{vote.text}} {{ vote.c }}</p>
-{% endfor %}
+{% extends "surveys/base.html" %}
+{% block title %}Results{% endblock %}
 
+{% block content %}
+<table>
+
+<tr>
+       <th> Answer </th> 
+	   <th> Votes </th>
+</tr>
+
+{% for vote in votes %}
+<tr>
+       <td>{{vote.text}}</td> 
+	   <td>{{ vote.c }} </td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock content %}

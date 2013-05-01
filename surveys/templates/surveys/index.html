@@ -1,5 +1,10 @@
+{% extends "surveys/base.html" %}
+{% block title %}Results{% endblock %}
+
+{% block content %}
+
 {% for survey in surveys %}
     <p><a href="/surveys/{{ survey.id }}">{{ survey.question }}</a></p>
 {% endfor %}
 
-<br/>
+{% endblock content %}

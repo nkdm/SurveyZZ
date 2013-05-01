@@ -1,0 +1,8 @@
+{% if surveys %}
+    {% for survey in surveys %}
+        <p><a href="/surveys/{{ survey.id }}/">{{ survey.question }}</a></p>
+    {% endfor %}
+{% else %}
+   <p>No polls are available</p>
+{% endif %}
+<br/>

@@ -80,10 +80,11 @@ table.results th
 {
 	background-color:#007AA3;
 	color: white;
+	color: #FFDC73;
 
 }
 
-table.results tr:nth-child(even) {
+table.results tr:nth-child(odd) {
 	background-color: #0494C4;
 	color: #FFDC73;
 }

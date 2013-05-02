@@ -1,12 +1,12 @@
 # Create your views here.
 from django.http import HttpResponse
 from surveys.models import Survey, PossibleAnswer, Vote
-from django.template import loader, Context
+from django.template import loader, Context, RequestContext
 from django.shortcuts import render, render_to_response
 
 def index(request):
     allSurveys = Survey.objects.all()
-    context = Context({
+    context = RequestContext(request, {
         "surveys": allSurveys,
     })
     template = loader.get_template("surveys/index.html")
@@ -16,7 +16,7 @@ def presentSurvey(request,id):
     if request.method=="GET":
         survey = Survey.objects.get(id=id)
         answers = PossibleAnswer.objects.filter(survey=survey)
-        context = Context({
+        context = RequestContext( request, {
             "question": survey.question,
             "answers": answers
             })
@@ -37,3 +37,7 @@ def results(request,id):
             "votes": votes
     })
     return render(request, "surveys/results.html", context)
+
+def login(request):
+    return render(request, "surveys/login.html")
+    

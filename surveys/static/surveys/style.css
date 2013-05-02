@@ -1,9 +1,20 @@
+#logging-panel{
+	font-size: 80%;
+	text-align: right;
+}
+
+#username
+{
+	font-weight: bold;
+}
+
 body
 {
 	margin: 0px;
 	height: 100%;
 	width: 100%;
 	background: #E8E8E8;
+	color: #52451D;
 	font-family: Arial, Helvetica, sans-serif ; 
 }
 
@@ -30,11 +41,16 @@ body
 {
 	background-color: #0494C4;
 	height: 600px;
-	width: 15%;
+	width: 110px;
 	float: left;
 	color: white;
 
 	padding: 15px 0 0 15px;
+}
+
+#logging-panel a
+{
+	color: #FFDC73;
 }
 
 #menu, #menu a, #main-header, #main-footer
@@ -47,42 +63,37 @@ body
 	background-color: #007AA3
 }
 
-table
+table.results
 {
 	border-collapse:collapse;
 	font-family: sans-serif;
 	text-align: center;
-	border: 1px solid white;
+	border: 1px none white;
 }
 
-td, th
+table.results td, th
 {
-	padding: 0px 30px 0px 30px;
+	padding: 1px 30px 1px 30px;
 }
 
-th
+table.results th
 {
 	background-color:#007AA3;
 	color: white;
+
 }
 
-tr
-{
-	background-color:#99CCFF;
-}
-
-
-tr:nth-child(even) {
-    background-color: #CCFFFF ;
+table.results tr:nth-child(even) {
+	background-color: #0494C4;
+	color: #FFDC73;
 }
 
 #content
 {
 	background-color: #C8E0E8;
-	width:79%;
 	height:600px;
-	float:left;
-	padding: 15px 0 0 15px;
+	left-margin: 15px;
+	padding: 15px 15px 0px 140px;
 }
 
 

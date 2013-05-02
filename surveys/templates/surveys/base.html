@@ -14,6 +14,13 @@
 	  Survey System<br>
 	  ZZ
 	</h1>
+  <div id="logging-panel">
+	{% if request.user.is_authenticated %}
+      Welcome, <strong>{{ request.user.username }}</strong>. <a href="/logout">Logout</a>
+	{% else %}
+      Welcome, <strong>anonymous user</strong>. Please <a href="/login">log in</a>.
+	{% endif %}
+  </div>
   </div>
 
   <div id="menu" >

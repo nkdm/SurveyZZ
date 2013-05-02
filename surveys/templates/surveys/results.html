@@ -2,7 +2,7 @@
 {% block title %}Results{% endblock %}
 
 {% block content %}
-<table>
+<table class="results">
 
 <tr>
        <th> Answer </th> 
@@ -11,7 +11,7 @@
 
 {% for vote in votes %}
 <tr>
-       <td>{{vote.text}}</td> 
+       <td>{{ vote.text }}</td> 
 	   <td>{{ vote.c }} </td>
 </tr>
 {% endfor %}

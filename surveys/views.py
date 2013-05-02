@@ -1,8 +1,9 @@
 # Create your views here.
 from django.http import HttpResponse
-from surveys.models import Survey, PossibleAnswer, Vote
+from surveys.models import Survey, PossibleAnswer, Vote, User
 from django.template import loader, Context, RequestContext
 from django.shortcuts import render, render_to_response
+from django.core.exceptions import ObjectDoesNotExist
 
 def index(request):
     allSurveys = Survey.objects.all()
@@ -24,7 +25,8 @@ def presentSurvey(request,id):
     else:
         optionId = request.POST["answer"]
         answer = PossibleAnswer.objects.get(id = optionId)
-        vote = Vote.objects.create(choice = answer)
+        vote,created = Vote.objects.get_or_create(user = request.user, defaults = {'choice': answer })
+        vote.choice = answer;
         vote.save()
         context = Context ({ "answer" : answer  })
         return render(request, "surveys/thanks.html", context )

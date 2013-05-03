@@ -4,8 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="{% static 'surveys/chart.css' %}" />
+
   <link rel="stylesheet" type="text/css" href="{% static 'surveys/style.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'surveys/chart.css' %}" />
+
   <title>{% block title %}{% endblock %}</title>
 
 
@@ -23,7 +25,7 @@
 				'{% static 'jQuery-Visualize/js/jquery.js' %}',
 				'{% static 'jQuery-Visualize/js/visualize.jQuery.js' %}',
 				'{% static 'surveys/templateVisualize.js' %}'
-			]
+		]
 		});   
     </script>
 </head>

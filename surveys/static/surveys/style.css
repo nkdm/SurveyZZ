@@ -15,6 +15,7 @@ a
 
 body
 {
+	font-size: 100%;
 	margin: 0px;
 	height: 100%;
 	width: 100%;
@@ -80,17 +81,19 @@ table.results td, th
 	padding: 1px 30px 1px 30px;
 }
 
-table.results th
+table.results thead th,table.results thead tr
 {
 	background-color:#007AA3;
 	color: white;
 	color: #FFDC73;
 }
 
-table.results tr:nth-child(odd) {
+table.results tbody tr:nth-child(odd) {
 	background-color: #0494C4;
 	color: #FFDC73;
 }
+
+
 
 #content
 {

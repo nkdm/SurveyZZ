@@ -22,5 +22,16 @@
 </tbody>
 </table>
 
+{% load staticfiles %}
+<script type="text/javascript">
+	enhance({
+		loadScripts: [
+			'{% static 'jQuery-Visualize/js/visualize.jQuery.js' %}',
+			'{% static 'surveys/templateVisualize.js' %}'
+		]
+	});
+</script>
+
+
 {% endblock content %}
 

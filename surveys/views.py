@@ -1,9 +1,11 @@
 # Create your views here.
 from django.http import HttpResponse
-from surveys.models import Survey, PossibleAnswer, Vote, User
+from surveys.models import Survey, PossibleAnswer, User
 from django.template import loader, Context, RequestContext
 from django.shortcuts import render, render_to_response
 from django.core.exceptions import ObjectDoesNotExist
+from django.forms.widgets import RadioSelect, Textarea
+from django.forms.models import BaseModelFormSet, modelformset_factory
 
 def index(request):
     allSurveys = Survey.objects.all()
@@ -13,28 +15,45 @@ def index(request):
     template = loader.get_template("surveys/index.html")
     return HttpResponse(template.render(context))
 
-def presentSurvey(request,id):
+
+from django import forms
+from django.forms.widgets import RadioSelect
+
+class SurveyModelChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self,obj):
+        return obj.text
+
+class PresentSurveyForm(forms.Form):
+    def __init__(self,survey=None, *args, **kwargs):
+        super(PresentSurveyForm, self).__init__(*args, **kwargs)
+        self.fields['text'] = SurveyModelChoiceField( queryset = PossibleAnswer.objects.filter(survey=survey) , 
+                                                      widget = RadioSelect,
+                                                      empty_label = None,
+                                                      label =  survey.question if survey else ""
+                                                      )
+
+def presentSurvey(request,id ):
     if request.method=="GET":
         survey = Survey.objects.get(id=id)
-        answers = PossibleAnswer.objects.filter(survey=survey)
+        form = PresentSurveyForm(survey)
         context = RequestContext( request, {
-            "question": survey.question,
-            "answers": answers
+            "form": form
             })
         return render(request, "surveys/present.html", context)
     else:
-        optionId = request.POST["answer"]
-        answer = PossibleAnswer.objects.get(id = optionId)
-        vote,created = Vote.objects.get_or_create(user = request.user, defaults = {'choice': answer })
-        vote.choice = answer;
-        vote.save()
-        context = Context ({ "answer" : answer  })
+        form = PresentSurveyForm(data = request.POST)
+        optionId = form.data['text']
+        answer = PossibleAnswer.objects.get(id = optionId)      
+        request.user.possibleanswer_set = [answer]
+        context = RequestContext(request,{
+                'answer':answer
+        })
         return render(request, "surveys/thanks.html", context )
 
 from django.db.models import Count
 def results(request,id):
     survey  = Survey.objects.get(id=id)
-    votes = PossibleAnswer.objects.filter(survey=survey).annotate( c= Count('vote'))
+    votes = PossibleAnswer.objects.filter(survey=survey).annotate( c= Count('voters'))
     context = Context({
             "votes": votes
     })

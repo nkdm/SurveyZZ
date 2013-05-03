@@ -3,12 +3,10 @@
 
 {% block content %}
 
-{{ question }}
+
 <form method="post" >
 {% csrf_token %}
-{% for answer in answers %}
-     <input type="radio" name="answer" value="{{answer.id}}">{{ answer.text }}<br>
-{% endfor %}
+{{ form.as_p }}
 <input type="submit" value="Submit">
 </form>
 

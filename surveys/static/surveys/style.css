@@ -103,4 +103,14 @@ table.results tbody tr:nth-child(odd) {
 	height: 800px;
 }
 
+div.resultsFrame
+{
+	border:2px solid;
+	border-radius:25px;
+}
 
+.resultsFrame
+{
+	padding: 0px 0px 17px 0px;
+	display: inline-block;
+}

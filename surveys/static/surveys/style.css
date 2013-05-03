@@ -45,12 +45,11 @@ body
 #menu
 {
 	background-color: #0494C4;
-	height: 600px;
 	width: 110px;
 	float: left;
 	color: white;
-
 	padding: 15px 0 0 15px;
+	height: 800px;
 }
 
 #logging-panel a
@@ -86,7 +85,6 @@ table.results th
 	background-color:#007AA3;
 	color: white;
 	color: #FFDC73;
-
 }
 
 table.results tr:nth-child(odd) {
@@ -97,9 +95,9 @@ table.results tr:nth-child(odd) {
 #content
 {
 	background-color: #C8E0E8;
-	height:600px;
 	left-margin: 15px;
 	padding: 15px 15px 0px 140px;
+	height: 800px;
 }
 
 

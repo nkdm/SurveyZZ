@@ -3,18 +3,24 @@
 
 {% block content %}
 <table class="results">
+<caption>Results</caption>
+<thead>
+  <tr>
+	<td></td>
+	<th scope="col"> Votes </th>
+  </tr>
+</thead>
 
-<tr>
-       <th> Answer </th> 
-	   <th> Votes </th>
-</tr>
 
+<tbody>
 {% for vote in votes %}
-<tr>
-       <td>{{ vote.text }}</td> 
-	   <td>{{ vote.c }} </td>
-</tr>
-{% endfor %}
+  <tr>
+    <th scope="row">{{ vote.text }}</th> 
+	<td>{{ vote.c }} </td>
+  </tr>
+  {% endfor %}
+</tbody>
 </table>
 
 {% endblock content %}
+

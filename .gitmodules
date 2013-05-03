@@ -1,0 +1,3 @@
+[submodule "surveys/static/jQuery-Visualize"]
+	path = surveys/static/jQuery-Visualize
+	url = https://github.com/filamentgroup/jQuery-Visualize

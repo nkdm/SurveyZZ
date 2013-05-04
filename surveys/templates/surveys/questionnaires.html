@@ -2,12 +2,8 @@
 {% block title %}Results{% endblock %}
 
 {% block content %}
-
-<table>
+<h2>Questionnaires </h2>
 {% for questionnaire in questionnaires %}
-  <tr>
-    <td> <a href="/questionnaires/{{ questionnaire.id }}">{{ questionnaire.name }}</a> </td>
-  </tr>
+    <li> <a href="/questionnaires/{{ questionnaire.id }}">{{ questionnaire.name }}</a> </li>
 {% endfor %}
-</table>
 {% endblock content %}

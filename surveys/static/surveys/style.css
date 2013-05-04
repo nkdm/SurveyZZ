@@ -45,12 +45,13 @@ body
 
 #menu
 {
+	margin: 5px ;
 	background-color: #0494C4;
 	width: 130px;
 	float: left;
 	color: white;
-	padding: 15px 0 0 15px;
-	height: 800px;
+	padding: 15px 0 15px 15px;
+	border-radius: 15px;
 }
 
 #logging-panel a
@@ -93,19 +94,11 @@ table.results tbody tr:nth-child(odd) {
 	color: #FFDC73;
 }
 
-#content
-{
-	background-color: #C8E0E8;
-	left-margin: 15px;
-	padding: 1px 15px 0px 160px;
-	height: 800px;
-}
 
 div.resultsFrame
 {
 	border:2px solid;
 	border-radius:25px;
-    display: table;
     margin: 0 auto;
 }
 
@@ -117,6 +110,18 @@ div.resultsFrame
 
 #resultsChart
 {
-   display: table;
    margin: 0 auto;
 }
+
+#content
+{
+	padding: 10px 15px 0px 180px;
+	min-height: 350px;
+}
+#page
+{
+	padding: 0px 0px 10px 0px;
+	background-color: #C8E0E8;
+}
+
+

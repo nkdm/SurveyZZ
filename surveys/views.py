@@ -60,7 +60,8 @@ def results(request,id):
     survey  = Survey.objects.get(id=id)
     votes = PossibleAnswer.objects.filter(survey=survey).annotate( c= Count('voters'))
     context = Context({
-            "votes": votes
+            "votes": votes,
+            "question": survey.question
     })
     return render(request, "surveys/results.html", context)
 
@@ -104,6 +105,7 @@ def questionnaire(request, id):
         form = QuestionnaireForm(questionnaire, initial = initial)
         context = RequestContext( request, {
                 "form": form,
+                "title": questionnaire.name
                 })
         return render(request, "surveys/present.html", context)
     else:

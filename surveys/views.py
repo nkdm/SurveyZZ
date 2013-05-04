@@ -35,7 +35,12 @@ class PresentSurveyForm(forms.Form):
 def presentSurvey(request,id ):
     if request.method=="GET":
         survey = Survey.objects.get(id=id)
-        form = PresentSurveyForm(survey)
+        try:
+            currentAnswer = request.user.possibleanswer_set.get(survey=survey)
+            form = PresentSurveyForm(survey, initial={'text': currentAnswer.id})
+        except:
+            form = PresentSurveyForm(survey)
+
         context = RequestContext( request, {
             "form": form
             })

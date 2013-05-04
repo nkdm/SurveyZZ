@@ -1,5 +1,5 @@
 # Create your views here.
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from surveys.models import Survey, PossibleAnswer, User
 from django.template import loader, Context, RequestContext
 from django.shortcuts import render, render_to_response
@@ -59,6 +59,15 @@ def results(request,id):
     })
     return render(request, "surveys/results.html", context)
 
-def login(request):
+def login(request, context=None):
     return render(request, "surveys/login.html")
+
+def admin(request):
+    if request.user.is_superuser:
+        return HttpResponseRedirect("/admin-django")
+    elif request.user.is_authenticated():
+        return render(request, "registration/nopermission.html")
+    else:
+        return HttpResponseRedirect("/login?next=/admin")
+
     

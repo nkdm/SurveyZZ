@@ -93,8 +93,6 @@ table.results tbody tr:nth-child(odd) {
 	color: #FFDC73;
 }
 
-
-
 #content
 {
 	background-color: #C8E0E8;
@@ -107,10 +105,18 @@ div.resultsFrame
 {
 	border:2px solid;
 	border-radius:25px;
+    display: table;
+    margin: 0 auto;
 }
 
 .resultsFrame
 {
 	padding: 0px 0px 17px 0px;
 	display: inline-block;
+}
+
+#resultsChart
+{
+   display: table;
+   margin: 0 auto;
 }

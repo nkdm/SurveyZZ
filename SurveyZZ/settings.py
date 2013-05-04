@@ -156,6 +156,7 @@ LOGGING = {
 }
 
 LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/login'
 
 TEMPLATE_CONTEXT_PROCESSORS = (
   'django.core.context_processors.request',

@@ -48,10 +48,14 @@ def presentSurvey(request, id):
     else:
         form = PresentSurveyForm(data = request.POST)
         optionId = form.data['text']
-        answer = PossibleAnswer.objects.get(id = optionId)      
-        request.user.possibleanswer_set = [answer]
+        answer = PossibleAnswer.objects.get(id=optionId)
+        survey = answer.survey
+        answers = request.user.possibleanswer_set.filter(survey=survey)
+        request.user.possibleanswer_set.remove(*answers)
+        request.user.possibleanswer_set.add(answer)
+
         context = RequestContext(request,{
-                'answer':answer
+                'answer':answer.text
         })
         return render(request, "surveys/thanks.html", context )
 
@@ -111,12 +115,15 @@ def questionnaire(request, id):
     else:
         form = QuestionnaireForm(data = request.POST)
         data = [(key,value) for key,value in form.data.iteritems() if key.isdigit()]
+        choicesTexts = []
         for key,value in data:
             survey = Survey.objects.get(id = int(key))
             answers = request.user.possibleanswer_set.filter(survey=survey)
             request.user.possibleanswer_set.remove(*answers)
             answer = PossibleAnswer.objects.get(id=value)
+            choicesTexts.append(answer.text)
             request.user.possibleanswer_set.add(answer)
-        return render(request, "surveys/thanks.html")
+        context = Context({ "answer": ", ".join(choicesTexts)})
+        return render(request, "surveys/thanks.html", context)
 
     

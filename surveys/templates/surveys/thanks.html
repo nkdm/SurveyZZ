@@ -1,6 +1,6 @@
 {% extends "surveys/base.html" %}
 {% block title %}Thank you{% endblock %}
 {% block content %}
-<p> Thank you for voting for {{ answer.text }}<p>
+<p> Thank you for voting{% if answer %} for {{ answer }}{% endif %}. <p>
 
 {% endblock content %}

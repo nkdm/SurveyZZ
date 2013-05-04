@@ -1,9 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
+class Questionnaire(models.Model):
+    name = models.CharField(max_length=150)
+    def __unicode__(self):
+        return self.name
+
 class Survey(models.Model):
     question = models.CharField(max_length=150)
+    questionnaire = models.ForeignKey(Questionnaire)
     def __unicode__(self):
         return self.question
 
@@ -13,6 +18,4 @@ class PossibleAnswer(models.Model):
     voters = models.ManyToManyField(User, blank = True)
     def __unicode__(self):
         return self.survey.question + " : " + self.text
-
-
 

@@ -9,5 +9,7 @@ urlpatterns = patterns('',
     url(r'^(?P<id>\d+)$', views.presentSurvey),
     url(r'^login/?$', login),
     url(r'^admin/?$', views.admin),
-    url(r'^logout/?$', logout,{ 'template_name':'registration/logout.html'} )
+    url(r'^logout/?$', logout,{ 'template_name':'registration/logout.html'} ),
+    url(r'^questionnaires/?$', views.questionnaires),
+    url(r'^questionnaires/(?P<id>\d+)/?$', views.questionnaire)
 )

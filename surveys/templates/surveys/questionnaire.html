@@ -1,0 +1,15 @@
+{% extends "surveys/base.html" %}
+{% block title %}Results{% endblock %}
+
+{% block content %}
+{% csrf_token %}
+<form method="post" >
+{% for form in forms %}
+
+{{ form.as_p }}
+
+{% endfor %}
+<input type="submit" value="Submit">
+</form>
+
+{% endblock content %}

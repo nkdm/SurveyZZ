@@ -46,7 +46,7 @@ body
 #menu
 {
 	background-color: #0494C4;
-	width: 110px;
+	width: 130px;
 	float: left;
 	color: white;
 	padding: 15px 0 0 15px;
@@ -97,7 +97,7 @@ table.results tbody tr:nth-child(odd) {
 {
 	background-color: #C8E0E8;
 	left-margin: 15px;
-	padding: 15px 15px 0px 140px;
+	padding: 1px 15px 0px 160px;
 	height: 800px;
 }
 

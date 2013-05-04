@@ -1,0 +1,13 @@
+{% extends "surveys/base.html" %}
+{% block title %}Results{% endblock %}
+
+{% block content %}
+
+<table>
+{% for questionnaire in questionnaires %}
+  <tr>
+    <td> <a href="/questionnaires/{{ questionnaire.id }}">{{ questionnaire.name }}</a> </td>
+  </tr>
+{% endfor %}
+</table>
+{% endblock content %}

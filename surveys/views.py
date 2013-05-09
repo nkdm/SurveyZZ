@@ -17,9 +17,13 @@ def index(request):
 
 
 from django import forms
-from django.forms.widgets import RadioSelect
+from django.forms.widgets import RadioSelect, CheckboxSelectMultiple
 
 class SurveyModelChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self,obj):
+        return obj.text
+
+class SurveyModelMultipleChoiceField(forms.ModelChoiceField):
     def label_from_instance(self,obj):
         return obj.text
 
@@ -91,21 +95,39 @@ class QuestionnaireForm(forms.Form):
     def __init__(self,questionnaire=None, *args, **kwargs):
         super(QuestionnaireForm, self).__init__(*args, **kwargs)
         for survey in questionnaire.survey_set.all() if questionnaire else []:
-            self.fields[survey.id] = SurveyModelChoiceField( 
-                queryset = PossibleAnswer.objects.filter(survey=survey), 
-                widget = RadioSelect,
-                empty_label = None,
-                label =  survey.question 
-                )
+            if survey.type == 'm':
+                self.fields[survey.id] = SurveyModelMultipleChoiceField( 
+                    queryset = PossibleAnswer.objects.filter(survey=survey), 
+                    label =  survey.question,
+                    widget = CheckboxSelectMultiple,
+                    empty_label = None
+                    )
+            else:
+                self.fields[survey.id] = SurveyModelChoiceField( 
+                    queryset = PossibleAnswer.objects.filter(survey=survey),
+                    widget = RadioSelect,
+                    empty_label = None,
+                    label =  survey.question 
+                    )
 
+
+def unList(x):
+    if isinstance(x,list):
+        if len(x) == 1:
+            return x[0]
+    return x
+
+import collections
 def questionnaire(request, id):
     questionnaire = Questionnaire.objects.get(id=id)
     surveys = questionnaire.survey_set.all()
     if request.method=="GET":
-        initial = dict( (answer.survey.id, answer.id) 
-                    for answer 
-                    in request.user.possibleanswer_set.filter(survey__questionnaire = questionnaire)
-                    )
+        initialLists = collections.defaultdict(list)
+        for answer in request.user.possibleanswer_set.filter(survey__questionnaire = questionnaire):
+            initialLists[answer.survey.id].append(answer.id)
+        
+        initial = { key:unList(item) for key,item in initialLists.iteritems()  }
+            
         form = QuestionnaireForm(questionnaire, initial = initial)
         context = RequestContext( request, {
                 "form": form,
@@ -113,14 +135,12 @@ def questionnaire(request, id):
                 })
         return render(request, "surveys/present.html", context)
     else:
-        form = QuestionnaireForm(data = request.POST)
-        data = [(key,value) for key,value in form.data.iteritems() if key.isdigit()]
+        postDict = dict(request.POST)
+        data = [(key,value) for key,value in postDict.iteritems() if key.isdigit()]
         choicesTexts = []
         for key,value in data:
-            answer = PossibleAnswer.objects.get(id=value)
+            answer = PossibleAnswer.objects.filter(id__in=value)
             submitAnswer(request.user,answer)
-            choicesTexts.append(answer.text)
         context = Context({ "answer": ", ".join(choicesTexts)})
         return render(request, "surveys/thanks.html", context)
 
-    

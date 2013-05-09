@@ -85,6 +85,9 @@
 - fields: {question: Europarlament, questionnaire: 1, type: ''}
   model: surveys.survey
   pk: 2
+- fields: {question: Poglądy, questionnaire: 1, type: 'm'}
+  model: surveys.survey
+  pk: 3
 - fields: {codename: add_permission, content_type: 1, name: Can add permission}
   model: auth.permission
   pk: 1
@@ -1044,6 +1047,24 @@
     voters: [6, 7, 26, 39, 40, 46, 52]
   model: surveys.possibleanswer
   pk: 14
+- fields:
+    survey: 3
+    text: Socjalizm
+    voters: [6, 7, 26, 39, 40, 46, 52]
+  model: surveys.possibleanswer
+  pk: 15
+- fields:
+    survey: 3
+    text: Liberalizm
+    voters: [6, 7, 26, 39, 40, 46, 52]
+  model: surveys.possibleanswer
+  pk: 16
+- fields:
+    survey: 3
+    text: Konserwatyzm
+    voters: [6, 7, 26, 39, 40, 46, 52]
+  model: surveys.possibleanswer
+  pk: 17
 - fields: {action_flag: 3, action_time: !!timestamp '2013-05-01 12:39:19.862521+00:00',
     change_message: '', content_type: 7, object_id: '11', object_repr: Survey object,
     user: 1}

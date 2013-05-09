@@ -8,8 +8,8 @@ class Questionnaire(models.Model):
         return self.name
 
 SurveyType = (
-    ('s', "Multiple choice"),
-    ('m', "Single choice"),
+    ('m', "Multiple choice"),
+    ('s', "Single choice"),
  )
 
 class Survey(models.Model):
@@ -27,7 +27,8 @@ class PossibleAnswer(models.Model):
         return self.survey.question + " : " + self.text
 
 def submitAnswer(user,answer):
-    survey = answer.survey;
+    print answer
+    survey = answer[0].survey
     answers = user.possibleanswer_set.filter(survey=survey)
     user.possibleanswer_set.remove(*answers)
-    user.possibleanswer_set.add(answer)
+    user.possibleanswer_set.add(*answer)

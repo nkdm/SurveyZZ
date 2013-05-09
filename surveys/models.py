@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 class Questionnaire(models.Model):
     name = models.CharField(max_length=150)
@@ -18,4 +19,11 @@ class PossibleAnswer(models.Model):
     voters = models.ManyToManyField(User, blank = True)
     def __unicode__(self):
         return self.survey.question + " : " + self.text
+    def clean(self):
+        raise ValidationError("bc")
 
+def submitAnswer(user,answer):
+    survey = answer.survey;
+    answers = user.possibleanswer_set.filter(survey=survey)
+    user.possibleanswer_set.remove(*answers)
+    user.possibleanswer_set.add(answer)

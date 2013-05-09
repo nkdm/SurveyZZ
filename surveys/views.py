@@ -1,6 +1,6 @@
 # Create your views here.
 from django.http import HttpResponse, HttpResponseRedirect
-from surveys.models import Survey, PossibleAnswer, User, Questionnaire
+from surveys.models import Survey, PossibleAnswer, User, Questionnaire, submitAnswer
 from django.template import loader, Context, RequestContext
 from django.shortcuts import render, render_to_response
 from django.core.exceptions import ObjectDoesNotExist
@@ -117,12 +117,9 @@ def questionnaire(request, id):
         data = [(key,value) for key,value in form.data.iteritems() if key.isdigit()]
         choicesTexts = []
         for key,value in data:
-            survey = Survey.objects.get(id = int(key))
-            answers = request.user.possibleanswer_set.filter(survey=survey)
-            request.user.possibleanswer_set.remove(*answers)
             answer = PossibleAnswer.objects.get(id=value)
+            submitAnswer(request.user,answer)
             choicesTexts.append(answer.text)
-            request.user.possibleanswer_set.add(answer)
         context = Context({ "answer": ", ".join(choicesTexts)})
         return render(request, "surveys/thanks.html", context)
 

@@ -1,0 +1,101 @@
+- model: surveys.Questionnaire
+  pk: 1
+  fields:
+    name: Polityka
+
+- model: surveys.Survey
+  pk: 1
+  fields:
+    question: Wybory parlamentarne
+    questionnaire: 1
+
+- model: surveys.Survey
+  pk: 2
+  fields:
+    question: Europarlament
+    questionnaire: 1
+
+- model: surveys.PossibleAnswer
+  pk: 1
+  fields:
+    text: PO
+    survey: 1
+
+- model: surveys.PossibleAnswer
+  pk: 2
+  fields:
+    text: PSL
+    survey: 1
+
+- model: surveys.PossibleAnswer
+  pk: 3
+  fields:
+    text: PiS
+    survey: 1
+
+- model: surveys.PossibleAnswer
+  pk: 4
+  fields:
+    text: SLD
+    survey: 1
+
+- model: surveys.PossibleAnswer
+  pk: 5
+  fields:
+    text: RP
+    survey: 1
+
+- model: surveys.PossibleAnswer
+  pk: 6
+  fields:
+    text: PO
+    survey: 2
+
+- model: surveys.PossibleAnswer
+  pk: 7
+  fields:
+    text: PSL
+    survey: 2
+
+- model: surveys.PossibleAnswer
+  pk: 8
+  fields:
+    text: PiS
+    survey: 2
+
+- model: surveys.PossibleAnswer
+  pk: 9
+  fields:
+    text: SLD
+    survey: 2
+
+- model: surveys.PossibleAnswer
+  pk: 10
+  fields:
+    text: Europa+
+    survey: 2
+
+- model: surveys.PossibleAnswer
+  pk: 11
+  fields:
+    text: NP
+    survey: 2
+
+- model: surveys.PossibleAnswer
+  pk: 12
+  fields:
+    text: SP
+    survey: 2
+
+- model: surveys.PossibleAnswer
+  pk: 13
+  fields:
+    text: NP
+    survey: 1
+
+- model: surveys.PossibleAnswer
+  pk: 14
+  fields:
+    text: SP
+    survey: 1
+

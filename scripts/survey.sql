@@ -27,4 +27,3 @@ BEFORE INSERT
 ON surveys_possibleanswer_voters
 FOR EACH ROW
 EXECUTE PROCEDURE clean_answer_duplicates();
-

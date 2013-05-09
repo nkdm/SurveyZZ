@@ -7,9 +7,15 @@ class Questionnaire(models.Model):
     def __unicode__(self):
         return self.name
 
+SurveyType = (
+    ('s', "Multiple choice"),
+    ('m', "Single choice"),
+ )
+
 class Survey(models.Model):
     question = models.CharField(max_length=150)
     questionnaire = models.ForeignKey(Questionnaire)
+    type = models.CharField(max_length=1, choices=SurveyType)
     def __unicode__(self):
         return self.question
 
@@ -19,8 +25,6 @@ class PossibleAnswer(models.Model):
     voters = models.ManyToManyField(User, blank = True)
     def __unicode__(self):
         return self.survey.question + " : " + self.text
-    def clean(self):
-        raise ValidationError("bc")
 
 def submitAnswer(user,answer):
     survey = answer.survey;

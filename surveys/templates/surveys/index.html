@@ -7,7 +7,6 @@
 {% for survey in surveys %}
   <tr>
     <td> {{ survey.question }} </td> 
-    <td> <a href="/surveys/{{ survey.id }}">Fill</a> </td>
     <td> <a href="/surveys/{{ survey.id }}/results">Results</a>  </td>
   </tr>
 {% endfor %}

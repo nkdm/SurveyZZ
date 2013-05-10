@@ -27,7 +27,6 @@ class PossibleAnswer(models.Model):
         return self.survey.question + " : " + self.text
 
 def submitAnswer(user,answer):
-    print answer
     survey = answer[0].survey
     answers = user.possibleanswer_set.filter(survey=survey)
     user.possibleanswer_set.remove(*answers)

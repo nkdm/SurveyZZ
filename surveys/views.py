@@ -83,6 +83,8 @@ def unList(x):
 
 import collections
 def questionnaire(request, id):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect("/login?next=/questionnaires/{0}".format(id))
     questionnaire = Questionnaire.objects.get(id=id)
     surveys = questionnaire.survey_set.all()
     if request.method=="GET":
